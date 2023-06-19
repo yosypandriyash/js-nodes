@@ -1,0 +1,162 @@
+:root {
+    --wrapperBgColor: #171717;
+    --wrapperBgDarkColor: #1c1c1c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    z-index: 10;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--wrapperBgDarkColor);
+    background-repeat: repeat;
+    background-image:
+            linear-gradient(45deg, var(--wrapperBgColor) 25%, transparent 25%),
+            linear-gradient(135deg, var(--wrapperBgColor) 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, var(--wrapperBgColor) 75%),
+            linear-gradient(135deg, transparent 75%, var(--wrapperBgColor) 75%);
+    background-size: 80px 80px;/* Must be a square */
+    background-position:0 0, 40px 0, 40px -40px, 0px 40px;
+    /*box-shadow: inset 5px 5px 0px 2px #2a2a2a;*/
+}
+
+.app-wrapper {
+    height: 100vh;
+    width: 100vw;
+    display: block;
+    z-index: 0;
+}
+
+.node {
+    position: absolute;
+    border-radius: 50%;
+    border: 8px solid #000;
+    background: #fff;
+    transition: all .5s;
+    opacity: 1;
+    z-index: 100;
+}
+
+.node.big-node {
+    border-radius: 0;
+    transform: scale(1.3);
+}
+
+.node .node-title {
+    position: absolute;
+    font-size: 1rem;
+    left: calc(100% + 10px);
+    font-family: sans-serif;
+    color: #fff;
+    padding: 3px 5px;
+    background: #000;
+    border-radius: 5px;
+    width: max-content;
+    text-transform: capitalize;
+}
+
+.node.node-deleted {
+    transform: scale(.5);
+    opacity: 0;
+}
+
+.node.new-node {
+    opacity: 0;
+    transform: scale(3);
+}
+
+.river-edge {
+    position: absolute;
+    border-radius: 20px;
+    background: #002049;
+    box-shadow: inset 0 0 10px 1px #000000;
+}
+
+.edge {
+    position: absolute;
+    min-height: 10px;
+    min-width: 10px;
+    border-radius: 10px;
+    z-index: 90;
+    transition: opacity .4s;
+}
+
+.edge.temporal-edge {
+    opacity: .7;
+}
+
+.edge.invalid-edge {
+    cursor: not-allowed;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.07)) !important;
+}
+
+.controls-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 70px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.49);
+    z-index: 1000;
+}
+
+.controls-wrapper .container {
+    display: block;
+    margin: 0 auto;
+    width: 600px;
+    height: 100%;
+}
+
+.controls-wrapper .container .controls {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    align-self: center;
+}
+
+.controls-wrapper .container .controls .color {
+    width: 35px;
+    height: 35px;
+    border-radius: 35px;
+}
+
+.controls-wrapper .container .controls .color.selected {
+    outline: 3px solid #fff;
+}
+
+.placement-helper {
+    display: block;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.25);
+    transition: all .1s;
+}
+
+*.hidden {
+    display: none;
+}
+
+*.opacity-10 {
+    opacity: 0.10;
+}
+
+#delete-btn {
+    cursor: pointer;
+    font-family: sans-serif;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    color: #fff;
+    background: darkred;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
